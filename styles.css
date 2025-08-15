@@ -2887,3 +2887,19 @@ footer {
     color: #fff !important;
     background: none !important;
 }
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(44, 19, 58, 0.90); /* roxo escuro opaco */
+    z-index: 998;
+    transition: opacity 0.3s ease;
+}
+
+.menu-overlay.show {
+    display: block;
+    opacity: 1;
+}

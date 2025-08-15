@@ -181,19 +181,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- MENU HAMBÚRGUER ---
-    const menuToggle = document.getElementById("menuToggle");
-    const navMenu = document.querySelector(".nav-menu");
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.querySelector(".nav-menu");
+const menuOverlay = document.querySelector(".menu-overlay"); // Adicione esta linha
 
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener("click", function () {
-            navMenu.classList.toggle("show");
-        });
+if (menuToggle && navMenu && menuOverlay) { // Inclua menuOverlay na verificação
+    menuToggle.addEventListener("click", function () {
+        navMenu.classList.toggle("show");
+        menuOverlay.classList.toggle("show"); // Adicione esta linha
+    });
 
-        // Fecha o menu ao clicar em um link
-        document.querySelectorAll(".nav-menu a").forEach(link => {
-            link.addEventListener("click", () => {
-                navMenu.classList.remove("show");
-            });
+    // Fecha o menu ao clicar em um link
+    document.querySelectorAll(".nav-menu a").forEach(link => {
+        link.addEventListener("click", () => {
+            navMenu.classList.remove("show");
+            menuOverlay.classList.remove("show"); // Adicione esta linha
         });
-    }
+    });
+
+    // Fecha o menu ao clicar no overlay
+    menuOverlay.addEventListener("click", () => {
+        navMenu.classList.remove("show");
+        menuOverlay.classList.remove("show");
+    });
+}
 });
