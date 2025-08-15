@@ -1667,8 +1667,7 @@ footer {
 
     .nav-menu a {
         padding: 10px;
-        color: #000000;
-        text-decoration: none;
+        color: #fff !important; /* Letras brancas */        text-decoration: none;
         font-size: 1.1rem;
         transition: background 0.3s ease;
         border-radius: 5px;
