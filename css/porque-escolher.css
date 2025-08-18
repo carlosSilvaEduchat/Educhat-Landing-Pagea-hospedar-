@@ -1,0 +1,72 @@
+/* ===============================
+   Por que nos escolher? (Diferenciais)
+   - Grid de pílulas e responsividade
+=============================== */
+.diferenciais-section { margin-bottom: 2rem; }
+
+.diferenciais-section h2 {
+    text-align: center;
+    font-size: 2.0rem;
+    color: #000;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Fundo modo escuro da seção: usar fundo global */
+[data-theme="dark"] .diferenciais-section { background: transparent; }
+
+/* Grid e linhas */
+.porque-escolher-grid { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.porque-escolher-row, .porque-escolher-row2 { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
+
+/* Pílulas */
+.porque-escolher-card {
+    width: 250px;
+    height: 80px;
+    padding: 1.5rem;
+    border-radius: 50px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.35s ease;
+    word-wrap: break-word;
+    white-space: normal;
+    line-height: 1.3;
+    margin: 0 auto;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 250px;
+}
+
+/* Topo (linha de cima) brancos opacidade 100% (modo claro) */
+.porque-escolher-row .porque-escolher-card { background: #ffffff; color: var(--primary-color); border: 2px solid var(--primary-color); }
+
+/* Linha de baixo com cor #4a266e */
+.porque-escolher-row2 .porque-escolher-card { background: #4a266e; color: #fff; border: none; }
+
+/* Textos dos cards no modo escuro sempre brancos (conforme pedido) */
+[data-theme="dark"] .porque-escolher-card { color: #FFFFFF !important; }
+
+/* Estilo translúcido no modo escuro para a linha de cima (como no exemplo) */
+[data-theme="dark"] .porque-escolher-row .porque-escolher-card {
+    background: rgba(255, 255, 255, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    color: #FFFFFF;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .porque-escolher-row, .porque-escolher-row2 { gap: 1rem; flex-wrap: wrap; }
+    .porque-escolher-card.branco, .porque-escolher-card.roxo { width: calc(50% - 1rem) !important; min-width: 200px; height: 70px !important; font-size: 0.9rem; padding: 1rem; }
+}
+@media (max-width: 600px) {
+    .porque-escolher-row, .porque-escolher-row2 { flex-direction: column; gap: 1rem; }
+    .porque-escolher-card.branco, .porque-escolher-card.roxo { width: 100% !important; height: 60px !important; font-size: 0.9rem; margin-bottom: 0.5rem; padding: 1rem; }
+    .porque-escolher-grid { padding: 1rem; }
+} 

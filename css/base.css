@@ -1,0 +1,36 @@
+/* ===============================
+   Reset e estilos base
+   - Normalização, tipografia e body
+=============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    padding-top: 60px; /* Espaço para o header fixo */
+}
+
+/* Título padrão de seção */
+.section-title {
+    text-align: center;
+    color: #2D133A;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Títulos no modo escuro brancos */
+[data-theme="dark"] .section-title { color: #FFFFFF; }
+
+/* Responsividade base */
+@media (max-width: 768px) {
+    body { padding-top: 48px; }
+} 

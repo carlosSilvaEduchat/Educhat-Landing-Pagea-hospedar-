@@ -1,49 +1,3 @@
-/*
-// --- MODO ESCURO COMENTADO ---
-// Função para alternar o tema
-function toggleTheme() {
-    const html = document.documentElement;
-    const currentTheme = html.getAttribute('data-theme');
-    
-    if (currentTheme === 'dark') {
-        html.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-        document.querySelector('#themeToggle i').classList.remove('fa-sun');
-        document.querySelector('#themeToggle i').classList.add('fa-moon');
-    } else {
-        html.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        document.querySelector('#themeToggle i').classList.remove('fa-moon');
-        document.querySelector('#themeToggle i').classList.add('fa-sun');
-    }
-}
-
-// Verificar tema salvo
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('themeToggle');
-    const html = document.documentElement;
-    const icon = themeToggle.querySelector('i');
-
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        html.setAttribute('data-theme', savedTheme);
-        icon.classList.remove('fa-moon', 'fa-sun');
-        icon.classList.add(savedTheme === 'dark' ? 'fa-sun' : 'fa-moon');
-    }
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-
-        icon.classList.remove('fa-moon', 'fa-sun');
-        icon.classList.add(newTheme === 'dark' ? 'fa-sun' : 'fa-moon');
-    });
-});
-*/
-
 // Smooth scrolling for anchor links
 document.addEventListener('DOMContentLoaded', function() {
     const links = document.querySelectorAll('a[href^="#"]');
@@ -128,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (e.key === 'ArrowLeft') this.prevSlide();
                     else if (e.key === 'ArrowRight') this.nextSlide();
                 });
+                window.addEventListener('resize', equalizeIdentityCardBodies);
             }
             goToSlide(index) {
                 if (index < 0 || index > this.maxIndex) return;
@@ -135,6 +90,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.updateTrack();
                 this.updateButtons();
                 this.updateIndicators();
+                // Equalizar após mover
+                equalizeIdentityCardBodies();
             }
             prevSlide() {
                 if (this.currentIndex > 0) {
@@ -178,31 +135,70 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         const carousel = new Carousel();
         carousel.startAutoPlay();
+
+        // Equalização inicial após a montagem
+        requestAnimationFrame(equalizeIdentityCardBodies);
     }
 
     // --- MENU HAMBÚRGUER ---
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.querySelector(".nav-menu");
-const menuOverlay = document.querySelector(".menu-overlay"); // Adicione esta linha
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.querySelector(".nav-menu");
+    const menuOverlay = document.querySelector(".menu-overlay");
 
-if (menuToggle && navMenu && menuOverlay) { // Inclua menuOverlay na verificação
-    menuToggle.addEventListener("click", function () {
-        navMenu.classList.toggle("show");
-        menuOverlay.classList.toggle("show"); // Adicione esta linha
-    });
-
-    // Fecha o menu ao clicar em um link
-    document.querySelectorAll(".nav-menu a").forEach(link => {
-        link.addEventListener("click", () => {
-            navMenu.classList.remove("show");
-            menuOverlay.classList.remove("show"); // Adicione esta linha
+    if (menuToggle && navMenu && menuOverlay) {
+        menuToggle.addEventListener("click", function () {
+            navMenu.classList.toggle("show");
+            menuOverlay.classList.toggle("show");
         });
-    });
 
-    // Fecha o menu ao clicar no overlay
-    menuOverlay.addEventListener("click", () => {
-        navMenu.classList.remove("show");
-        menuOverlay.classList.remove("show");
-    });
-}
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                navMenu.classList.remove("show");
+                menuOverlay.classList.remove("show");
+            });
+        });
+
+        menuOverlay.addEventListener("click", () => {
+            navMenu.classList.remove("show");
+            menuOverlay.classList.remove("show");
+        });
+    }
+
+    // --- MODO ESCURO ---
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    if (themeToggle) {
+        const icon = themeToggle.querySelector('i');
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+            icon.classList.remove('fa-moon', 'fa-sun');
+            icon.classList.add(savedTheme === 'dark' ? 'fa-sun' : 'fa-moon');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            icon.classList.remove('fa-moon', 'fa-sun');
+            icon.classList.add(newTheme === 'dark' ? 'fa-sun' : 'fa-moon');
+            // Recalcular depois de trocar o tema
+            equalizeIdentityCardBodies();
+        });
+    }
+
+    // --- Função: equalizar altura do corpo dos cards de identidade ---
+    function equalizeIdentityCardBodies() {
+        const bodies = document.querySelectorAll('.identidade-card .identidade-bottom');
+        if (!bodies.length) return;
+        // Reset heights para medir corretamente
+        bodies.forEach(b => b.style.height = 'auto');
+        // Medir maior
+        let max = 0;
+        bodies.forEach(b => { max = Math.max(max, b.clientHeight); });
+        // Aplicar
+        bodies.forEach(b => b.style.height = max + 'px');
+    }
 });

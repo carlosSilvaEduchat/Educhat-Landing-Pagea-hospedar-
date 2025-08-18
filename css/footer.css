@@ -1,0 +1,35 @@
+/* ===============================
+   Footer
+   - Layout, marca e redes
+=============================== */
+footer { background-color: var(--footer-bg); padding: 4rem 2rem; margin-top: 4rem; }
+.footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; padding: 0 2rem; }
+
+/* Bloco à direita com marca e redes */
+.brand-right { text-align: right; }
+.brand-right .brand-content { display: flex; flex-direction: column; align-items: flex-end; }
+.brand-right h3 { font-size: 2rem; margin-bottom: 1rem; }
+
+/* Força branco em vários elementos do footer */
+.footer-section h3,
+.contact-info p,
+.contact-info i,
+.brand-right .brand-content h3,
+.brand-right .brand-content p,
+.social-links a { color: #fff !important; }
+
+/* Contato */
+.contact-info p { display: flex; align-items: center; gap: 10px; }
+
+/* Redes sociais */
+.social-links { display: flex; justify-content: flex-end; gap: 1.5rem; margin-top: 1rem; }
+.social-links a { color: #fff; font-size: 2rem; transition: opacity 0.3s ease; }
+.social-links a:hover { opacity: 0.8; }
+
+/* Responsividade do footer */
+@media (max-width: 768px) {
+    .footer-content { flex-direction: column; align-items: center; gap: 2rem; }
+    .brand-right { text-align: center; }
+    .brand-right .brand-content { align-items: center; }
+    .social-links { justify-content: center; }
+} 
