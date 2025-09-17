@@ -1,0 +1,162 @@
+/* ===============================
+   Header & Navegação
+   - Header fixo, nav, menu e overlay
+=============================== */
+header {
+    background-color: var(--header-bg);
+    box-shadow: 0 4px 16px rgba(45, 19, 58, 0.10);
+    height: 60px;
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    z-index: 1000;
+    border-bottom-left-radius: 70px;
+    border-bottom-right-radius: 70px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 2rem;
+}
+
+/* Logo do topo */
+.logo-img {
+    height: 60px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    max-width: 300px;
+}
+
+/* Menu desktop */
+.nav-menu {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    background: none;
+    border: none;
+    position: static;
+    height: 60px;
+    padding: 0;
+}
+
+/* Links de navegação */
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color var(--transition-speed), transform var(--transition-speed);
+    position: relative;
+    padding: 0.2rem 0.8rem;
+}
+
+/* Garante branco para normal e visitado */
+.nav-link:link,
+.nav-link:visited { color: #fff; }
+
+/* Hover com animação sublinhada mantendo texto branco */
+.nav-link:hover { color: #fff; transform: translateY(-2px); }
+
+/* Sub-linha animada dos links */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    transition: width var(--transition-speed);
+}
+.nav-link:hover::after { width: 100%; }
+
+/* Alternância de tema (botão) */
+.theme-toggle { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.theme-toggle button { background: transparent; border: none; cursor: pointer; padding: 8px; border-radius: 50%; transition: all 0.3s ease; }
+.theme-toggle button:hover { background: rgba(255, 255, 255, 0.12); }
+.theme-toggle button i { color: #fff; font-size: 1.2rem; transition: all 0.3s ease; }
+
+/* Ícone no modo escuro em destaque */
+[data-theme="dark"] .theme-toggle button i { color: var(--secondary-color); }
+
+/* Menu hambúrguer (mobile) */
+.menu-toggle { display: none; }
+
+@media (max-width: 768px) {
+    /* Header mais compacto */
+    header { height: 48px; }
+
+    /* Nav em linha: logo esquerda, tema centro, hambúrguer direita */
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 48px;
+        padding: 0 0.5rem;
+    }
+
+    .logo { order: 1; }
+    .theme-toggle { 
+        order: 2; 
+        margin-left: 0; 
+    }
+    .menu-toggle { 
+        order: 3; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    /* Normalizar alturas/tamanhos */
+    .logo-img { height: 36px; }
+    .theme-toggle button { padding: 6px; }
+    .theme-toggle button i { font-size: 1.5rem; }
+
+    /* Dropdown do menu em mobile */
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px; right: 0; left: auto;
+        background: rgba(108, 62, 182, 0.2);
+        width: 220px;
+        padding: 1rem;
+        border-radius: 0 0 0 8px;
+        z-index: 999;
+        height: auto;
+    }
+    .nav-menu.show { display: flex; }
+
+    .nav-menu a {
+        padding: 10px;
+        color: #fff !important;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: background 0.3s ease;
+        border-radius: 5px;
+    }
+    .nav-menu a.active { background: rgba(108, 62, 182, 0.6); }
+    .nav-menu a:hover { background: rgba(108, 62, 182, 0.4); }
+}
+
+/* Overlay de escurecimento quando o menu está aberto */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(44, 19, 58, 0.90);
+    z-index: 998;
+    transition: opacity 0.3s ease;
+}
+.menu-overlay.show { display: block; opacity: 1; }

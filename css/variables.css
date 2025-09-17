@@ -1,0 +1,32 @@
+/* ===============================
+   Variáveis globais do tema
+   - Cores, tempos e overlays
+=============================== */
+:root {
+    /* Cores principais */
+    --primary-color: #6C3EB6;        /* Roxo principal */
+    --secondary-color: #F4B731;      /* Amarelo destaque */
+
+    /* Cores de base */
+    --background-color: #FFFFFF;     /* Fundo claro */
+    --text-color: #2D133A;           /* Texto padrão */
+    --text-secondary: #6C3EB6;       /* Texto secundário */
+
+    /* Cores de elementos */
+    --card-background: #FFFFFF;      /* Fundo de cards */
+    --header-bg: #6C3EB6;            /* Fundo do header/nav */
+    --nav-text: #FFFFFF;             /* Texto da navegação */
+    --footer-bg: var(--header-bg);   /* Fundo do footer igual ao header */
+
+    /* Utilitários */
+    --transition-speed: 0.3s;        /* Velocidade de transição padrão */
+    --gradient-overlay: linear-gradient(135deg, rgba(209, 77, 202, 0.06), rgba(244, 183, 49, 0.06));
+}
+
+/* ===============================
+   Tema escuro: fundo global e texto branco
+=============================== */
+[data-theme="dark"] {
+    --background-color: #1D1028;     /* Fundo global escuro */
+    --text-color: #FFFFFF;           /* Texto branco */
+} 

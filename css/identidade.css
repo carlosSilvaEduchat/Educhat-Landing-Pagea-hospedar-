@@ -1,0 +1,94 @@
+/* ===============================
+   Nossa Identidade (Carrossel)
+   - Cards, brilho, controles e indicadores
+=============================== */
+.identidade-section { padding: 4rem 2rem; background: #ffffff; }
+
+/* Fundo modo escuro da seção: usar fundo global */
+[data-theme="dark"] .identidade-section { background: transparent; }
+
+.identidade-container { max-width: 1200px; margin: 0 auto; position: relative; overflow: hidden; border-radius: 15px; padding: 0 70px; }
+.identidade-scroll { display: flex; gap: 20px; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); padding: 20px 0; }
+
+/* Card base */
+.identidade-card {
+    flex: 0 0 calc(33.333% - 2rem);
+    min-width: 300px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 1rem;
+    height: auto;
+    min-height: 300px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+.identidade-card:hover { transform: translateY(-8px); box-shadow: 0 12px 20px rgba(108, 62, 182, 0.15); }
+
+/* Remover borda do card no modo escuro (vamos aplicá-la só ao bloco branco) */
+[data-theme="dark"] .identidade-card { background: transparent; border: none; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25); }
+
+/* Efeito brilho tipo Netflix */
+.identidade-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.8s;
+    pointer-events: none; z-index: 1;
+}
+.identidade-card:hover::before { left: 100%; }
+
+/* Cabeçalho do card */
+.identidade-top { padding: 1.5rem; display: flex; align-items: center; gap: 1rem; color: #fff; font-weight: 600; }
+.identidade-top.amarelo { background: linear-gradient(135deg, #F4B731, #FFA726); }
+.identidade-top.roxo { background: linear-gradient(135deg, #6C3EB6, #8E44AD); }
+.identidade-top i { font-size: 1.5rem; }
+.identidade-top h3 { margin: 0; font-size: 1.2rem; font-weight: 700; }
+.identidade-top.amarelo i { color: #fff !important; background: none !important; }
+
+/* Corpo do card: fundo branco opacidade 100% */
+.identidade-bottom { padding: 1.5rem; min-height: 0; background: #ffffff; }
+.identidade-bottom p { margin: 0; line-height: 1.5; color: #2D133A; font-size: 1rem; }
+
+/* Estilo translúcido no modo escuro + borda ao redor da parte branca (completa) */
+[data-theme="dark"] .identidade-bottom {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 0 0 15px 15px; /* cantos inferiores arredondados para "completar" */
+    color: #FFFFFF;
+    backdrop-filter: blur(6px);
+}
+[data-theme="dark"] .identidade-bottom p { color: #FFFFFF !important; }
+
+/* Controles (setas) */
+.identidade-nav {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    color: #333; border: none; width: 50px; height: 50px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.3s ease; z-index: 100;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.identidade-nav:hover { background: #fff; transform: translateY(-50%) scale(1.1); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+.identidade-nav.prev { left: 10px; }
+.identidade-nav.next { right: 10px; }
+.identidade-nav:disabled { opacity: 0.5; cursor: not-allowed; transform: translateY(-50%) scale(0.9); }
+.identidade-nav i { font-size: 1.2rem; }
+
+/* Indicadores */
+.identidade-indicators { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+.identidade-indicator { width: 12px; height: 12px; border-radius: 50%; background: #ddd; cursor: pointer; transition: all 0.3s ease; }
+.identidade-indicator.active { background: #667eea; transform: scale(1.2); }
+.identidade-indicator:hover { background: #667eea; transform: scale(1.1); }
+
+/* Responsividade específica */
+@media (max-width: 768px) {
+    .identidade-section { padding: 2rem 1rem; }
+    .identidade-card { min-width: calc(100% - 20px); height: auto; }
+    .identidade-top { padding: 1rem; }
+    .identidade-top h3 { font-size: 1.1rem; }
+    .identidade-bottom { padding: 1rem; min-height: 0; }
+} 

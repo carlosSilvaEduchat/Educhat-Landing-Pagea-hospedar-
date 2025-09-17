@@ -1,0 +1,74 @@
+/* ===============================
+   Home
+   - Capa, texto, media e CTA
+=============================== */
+.home-section {
+    padding: 80px 2rem 3rem;
+    background: var(--primary-color);
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* Container centralizado */
+.home-container { max-width: 1200px; margin: 0 auto; width: 100%; }
+
+/* Grid com texto à esquerda e mídia à direita */
+.home-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Títulos de destaque */
+.home-text h1 {
+    font-size: 3.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.home-text h2 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+/* Mídia institucional (vídeo/imagem) */
+.home-media { display: flex; justify-content: center; align-items: center; }
+.media-container { position: relative; width: 100%; max-width: 500px; }
+
+.institutional-media {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+.institutional-media:hover { transform: scale(1.02); }
+
+.institutional-image { width: 100%; height: 400px; object-fit: cover; display: block; }
+
+/* Botão CTA principal */
+.cta-button-primary {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: #552C7F;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+}
+.cta-button-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(244, 183, 49, 0.4); } 

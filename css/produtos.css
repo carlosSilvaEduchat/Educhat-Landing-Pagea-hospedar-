@@ -1,0 +1,89 @@
+/* ===============================
+   Produtos
+   - Cards, cores e interações
+=============================== */
+.produtos-section { margin: 4rem 0; padding: 2rem; }
+
+/* Título da seção */
+.produtos-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.0rem;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 100%;
+    display: block;
+}
+
+/* Fundo modo escuro da seção Produtos: fundo global do body assume */
+[data-theme="dark"] .produtos-section { background: transparent; }
+
+/* Grid de cards */
+.produtos-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+/* Card base */
+.produto-card {
+    flex: 1;
+    width: 300px;
+    min-height: 220px;
+    padding: 1.5rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-color);
+    background: #fafafa;
+}
+
+/* Ícone dentro do card de produto */
+.produto-icon img { width: 50px; height: auto; }
+
+/* Tipografia do card */
+.produto-card h3 { font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: 700; color: inherit; }
+.produto-card p { font-size: 0.9rem; line-height: 1.4; color: inherit; }
+
+/* Cores por posição (modo claro) */
+/* Card do meio (2) em roxo #552c7f */
+.produtos-grid .produto-card:nth-child(2) { background: #552c7f; color: #fff; border: none; }
+.produtos-grid .produto-card:nth-child(2) h3 { color: var(--secondary-color); }
+.produtos-grid .produto-card:nth-child(2) p { color: #fff; }
+
+/* Cards das pontas (1 e 3) brancos com opacidade 100% */
+.produtos-grid .produto-card:nth-child(1),
+.produtos-grid .produto-card:nth-child(3) { background: #ffffff; color: var(--text-color); border: 2px solid var(--primary-color); }
+.produtos-grid .produto-card:nth-child(1) h3,
+.produtos-grid .produto-card:nth-child(3) h3 { color: var(--primary-color); }
+
+/* Textos dos cards no modo escuro sempre brancos (conforme pedido) */
+[data-theme="dark"] .produto-card h3,
+[data-theme="dark"] .produto-card p { color: #FFFFFF !important; }
+
+/* Estilo translúcido no modo escuro para os cards brancos (1º e 3º) */
+[data-theme="dark"] .produtos-grid .produto-card:nth-child(1),
+[data-theme="dark"] .produtos-grid .produto-card:nth-child(3) {
+    background: rgba(255, 255, 255, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    color: #FFFFFF;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+}
+
+/* Interação (hover) */
+.produtos-grid .produto-card { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+.produtos-grid .produto-card:hover { transform: translateY(-16px); box-shadow: 0 12px 32px rgba(44,19,58,0.18), 0 2px 8px rgba(44,19,58,0.06); z-index: 2; cursor: pointer; }
+
+/* Responsividade específica da seção */
+@media (max-width: 992px) {
+    .produtos-grid { flex-direction: column; align-items: center; }
+    .produto-card { width: 100%; max-width: 300px; }
+} 

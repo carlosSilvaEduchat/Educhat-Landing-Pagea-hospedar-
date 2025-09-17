@@ -1,0 +1,28 @@
+/* ===============================
+   Equipe
+   - Foto do grupo e categorias
+=============================== */
+.equipe-section { margin-bottom: 2rem; padding: 2rem; background: #ffffff; }
+
+/* Fundo modo escuro da seção Equipe */
+[data-theme="dark"] .equipe-section { background: #2a1e39; }
+
+.equipe-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+
+/* Foto do grupo */
+.equipe-foto-grupo { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); border: 2px solid #6C3EB6; }
+.equipe-imagem-grupo { width: 100%; height: 280px; object-fit: cover; display: block; }
+
+/* Lista de categorias */
+.equipe-categorias { display: flex; flex-direction: column; gap: 0.8rem; }
+.equipe-categoria { background: #F4B731; color: #2D133A; padding: 0.8rem 1.2rem; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); font-weight: 600; font-size: 0.9rem; }
+.equipe-categoria:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); background: #FFA726; }
+.equipe-icon { width: 30px; height: 30px; background: #6C3EB6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.9rem; }
+
+/* Responsividade específica */
+@media (max-width: 768px) {
+    .equipe-container { grid-template-columns: 1fr; gap: 2rem; }
+    .equipe-imagem-grupo { height: 300px; }
+    .equipe-categoria { padding: 1.2rem 1.5rem; font-size: 1rem; }
+    .equipe-icon { width: 35px; height: 35px; font-size: 1rem; }
+} 
